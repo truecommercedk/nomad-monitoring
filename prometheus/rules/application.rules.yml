@@ -1,0 +1,929 @@
+groups:
+  - name: application.rules
+    rules:
+      - alert: Business Configuration - Control route conflict
+        expr: app_monitoring_tlog{name="Business Configuration - Control route conflict"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Business+Configuration+-+Control+route+conflict"
+
+      - alert: Business Configuration - Control route creation failed
+        expr: app_monitoring_tlog{name="Business Configuration - Control route creation failed"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Business+Configuration+-+Control+route+creation+failed"
+
+      - alert: Business Configuration - RouteAdm migration failed
+        expr: app_monitoring_tlog{name="Business Configuration - RouteAdm migration failed"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Business+Configuration+-+RouteAdm+migration+failed"
+
+      - alert: Transaction Log - Processing Engine - Failed orphan records
+        expr: app_monitoring_tlog{name="Transaction Log - Processing Engine - Failed orphan records"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Processing+Engine+-+Failed+orphan+records"
+
+      - alert: Transaction Log - Incoming GW - No OIOSI records
+        expr: app_monitoring_tlog{name="Transaction Log - Incoming GW - OIOSI records"} == 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Incoming+GW+-+No+OIOSI+records"
+
+      - alert: Transaction Log - Incoming GW - No VLTrader records
+        expr: app_monitoring_tlog{name="Transaction Log - Incoming GW - VLTrader records"} == 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Incoming+GW+-+No+VLTrader+records"
+
+      - alert: Transaction Log - Incoming GW - No X400 records
+        expr: app_monitoring_tlog{name="Transaction Log - Incoming GW - X400 records"} == 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Incoming+GW+-+No+X400+records"
+
+      - alert: Transaction Log - Outgoing GW - No OIOSI records
+        expr: app_monitoring_tlog{name="Transaction Log - Outgoing GW - OIOSI records"} == 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Outgoing+GW+-+No+OIOSI+records"
+
+      - alert: Transaction Log - Outgoing GW - No VLTrader records
+        expr: app_monitoring_tlog{name="Transaction Log - Outgoing GW - VLTrader records"} == 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Incoming+GW+-+No+VLTrader+records"
+
+      - alert: Transaction Log - Outgoing GW - No X400 records
+        expr: app_monitoring_tlog{name="Transaction Log - Outgoing GW - X400 records"} == 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Outgoing+GW+-+No+X400+records"
+
+      - alert: Transaction Log - Processing Engine - No ebroker records
+        expr: app_monitoring_tlog{name="Transaction Log - Processing Engine - ebroker records"} == 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Processing+Engine+-+No+ebroker+records"
+
+      - alert: Transaction Processing - Billing Processor failure
+        expr: app_monitoring_tlog{name="Transaction Processing - Billing Processor"} == 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Processing+-+Billing+Processor+failue"
+
+      - alert: TIEKE - XML Download failed
+        expr: app_monitoring_tlog{name="TIEKE - XML Download"} < 2
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/TIEKE+-+XML+Download+failed"
+
+      - alert: TIEKE - New VANS encounted
+        expr: app_monitoring_tlog{name="TIEKE - New VANS encounted"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/TIEKE+-+New+VANS+encounted"
+
+      - alert: TIEKE - New qualifier encounted
+        expr: app_monitoring_tlog{name="TIEKE - New qualifier encounted"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/TIEKE+-+New+qualifier+encounted"
+
+      - alert: Transaction Log - Next record not merged
+        expr: app_monitoring_tlog{name="Transaction Log - Next record not merged"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Next+record+not+merged"
+
+      - alert: Transaction Log - Flows - Looping
+        expr: app_monitoring_tlog{name="Transaction Log - Flows - Looping"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Flows+-+Looping"
+
+      - alert: Transaction Log - Incoming GW - No FID
+        expr: app_monitoring_tlog{name="Transaction Log - Incoming GW - No FID"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Incoming+GW+-+No+FID"
+
+      - alert: Transaction Log - Incoming GW - Records not merged
+        expr: app_monitoring_tlog{name="Transaction Log - Incoming GW - Records not merged"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Incoming+GW+-+Records+not+merged"
+
+      - alert: Transaction Log - Outgoing GW - Failed orphan records
+        expr: app_monitoring_tlog{name="Transaction Log - Outgoing GW - Failed orphan records"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Outgoing+GW+-+Failed+orphan+records"
+
+      - alert: Transaction Log - Outgoing GW - OIOSI in processing state
+        expr: app_monitoring_tlog{name="Transaction Log - Outgoing GW - OIOSI in processing state"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Outgoing+GW+-+OIOSI+in+processing+state"
+
+      - alert: Transaction Log - Outgoing GW - Records not merged
+        expr: app_monitoring_tlog{name="Transaction Log - Outgoing GW - Records not merged"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Outgoing+GW+-+Records+not+merged"
+
+      - alert: Transaction Log - Previous record not merged
+        expr: app_monitoring_tlog{name="Transaction Log - Previous record not merged"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Previous+record+not+merged"
+
+      - alert: Transaction Log - Processing Engine - Records not merged
+        expr: app_monitoring_tlog{name="Transaction Log - Processing Engine - Records not merged"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Processing+Engine+-+Records+not+merged"
+
+      - alert: Transaction Processing - Awaiting positive control processing delivered mode
+        expr: app_monitoring_tlog{name="Transaction Processing - Awaiting positive control processing delivered mode"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/pages/viewpage.action?pageId=253710579"
+
+      - alert: Transaction Processing - Positive control lookup failure
+        expr: app_monitoring_tlog{name="Transaction Processing - Positive control lookup failure"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Processing+-+Positive+control+lookup+failure"
+
+      - alert: Transaction Processing - Put On Hold
+        expr: app_monitoring_tlog{name="Transaction Processing - Put On Hold"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Processing+-+Put+On+Hold"
+
+
+      - alert: SOR Download did not run
+        expr: app_monitoring_tlog{name="SOR Download did not run"} == 0
+        for: 15m
+        labels:
+          severity: "information"
+          notify: "dev_support"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/SOR+Download+did+not+run"
+
+      - alert: SOR Download failed
+        expr: app_monitoring_tlog{name="SOR Download failed"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+          notify: "dev_support"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/SOR+Download+failed"
+
+      - alert: Transaction Processing - Awaiting Error Processing
+        expr: app_monitoring_tlog{name="Transaction Processing - Awaiting Error Processing"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Processing+-+Awaiting+error+processing"
+
+      - alert: Transaction Processing - Awaiting positive control processing received mode
+        expr: app_monitoring_tlog{name="Transaction Processing - Awaiting positive control processing received mode"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/pages/viewpage.action?pageId=253710577"
+
+
+      - alert: Transaction Processing - Awaiting reporting - AppResp
+        expr: app_monitoring_tlog{name="Transaction Processing - Awaiting reporting - AppResp"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Processing+-+Awaiting+reporting+-+AppResp"
+
+      - alert: Transaction Processing - Awaiting reporting - Controls
+        expr: app_monitoring_tlog{name="Transaction Processing - Awaiting reporting - Controls"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Processing+-+Awaiting+reporting+-+Controls"
+
+      - alert: Transaction Processing - Awaiting reporting - Mail
+        expr: app_monitoring_tlog{name="Transaction Processing - Awaiting reporting - Mail"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Processing+-+Awaiting+reporting+-+Mail"
+
+      - alert: Transaction Processing - Awaiting reporting - NetSuite
+        expr: app_monitoring_tlog{name="Transaction Processing - Awaiting reporting - NetSuite"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Processing+-+Awaiting+reporting+-+NetSuite"
+
+      - alert: Transaction Processing - Awaiting reporting - OneTime Ack
+        expr: app_monitoring_tlog{name="Transaction Processing - Awaiting reporting - OneTime Ack"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Processing+-+Awaiting+reporting+-+OneTime+ack"
+
+      - alert: Transaction Processing - Awaiting Resending
+        expr: app_monitoring_tlog{name="Transaction Processing - Awaiting Resending"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Processing+-+Awaiting+resending"
+
+      - alert: Transaction Processing - Negative control setup conflict
+        expr: app_monitoring_tlog{name="Transaction Processing - Negative control setup conflict"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Processing+-+Negative+control+setup+conflict"
+
+      - alert: Transaction Processing - NetSuite reporting failed
+        expr: app_monitoring_tlog{name="Transaction Processing - NetSuite reporting failed"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-bat-cmd-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Processing+-+NetSuite+reporting+failed"
+
+      - alert: Command System - BC Command Processor Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="bcprocessorerrorqueue"} > 10
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Command+System+-+BC+Command+Processor+Error+Queue"
+
+      - alert: Command System - BC Command Processor Queue
+        expr: app_monitoring_dotNet_delayTime{queue="bcprocessorqueue"} > 600
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Command+System+-+BC+Command+Processor+Queue"
+
+      - alert: Command System - Business Configuration Processor Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="businessconfigurationprocessorerrorqueue"} > 10
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Command+System+-+Business+Configuration+Processor+Error+Queue"
+
+      - alert: Command System - Business Configuration Processor Queue
+        expr: app_monitoring_dotNet_delayTime{queue="businessconfigurationprocessorqueue"} > 600
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Command+System+-+Business+Configuration+Processor+Queue"
+
+      - alert: Command System - Database Operation Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="databaseoperationerrorqueue"} > 10
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Command+System+-+Database+Operation+Error+Queue"
+
+      - alert: Command System - Database Operation Queue
+        expr: app_monitoring_dotNet_delayTime{queue="databaseoperationqueue"} > 600
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Command+System+-+Database+Operation+Queue"
+
+      - alert: Command System - Elasticsearch Command Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="elasticsearchcommanderrorqueue"} > 10
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Command+System+-+Elasticsearch+Command+Error+Queue"
+
+      - alert: Command System - Elasticsearch Command Queue
+        expr: app_monitoring_dotNet_delayTime{queue="elasticsearchcommandqueue"} > 600
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Command+System+-+Elasticsearch+Command+Queue"
+
+      - alert: Command System - Message Bus Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="messagebuserrorqueue"} > 1
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Command+System+-+Message+Bus+Error+Queue"
+
+      - alert: Command System - Message Bus Queue
+        expr: app_monitoring_dotNet_delayTime{queue="messagebusqueue"} > 600
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Command+System+-+Message+Bus+Queue"
+
+      - alert: Transaction Log - Analyzer Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="TLAnalyzerCruncherErrorQueue"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Analyzer+Error+Queue"
+
+      - alert: Transaction Log - Incoming Gateway Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="TLIncomingGWCruncherErrorQueue"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Incoming+Gateway+Error+Queue"
+
+      - alert: Transaction Log - Outgoing Gateway Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="TLOutgoingGWCruncherErrorQueue"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Outgoing+Gateway+Error+Queue"
+
+      - alert: Transaction Log - Processing Engine Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="TLProcEngCruncherErrorQueue"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Processing+Engine+Error+Queue"
+
+      - alert: Transaction Log - Router Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="TLRouterCruncherErrorQueue"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Router+Error+Queue"
+
+      - alert: Transaction Log - Splitter Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="TLSplitterCruncherErrorQueue"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Splitter+Error+Queue"
+
+      - alert: Transaction Log - Validator Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="TLValidatorCruncherErrorQueue"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Validator+Error+Queue"
+
+      - alert: Command System - Client Message Bus Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="clientmessagebuserrorqueue"} > 1
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Command+System+-+Client+Message+Bus+Error+Queue"
+
+      - alert: Command System - Client Message Bus Queue
+        expr: app_monitoring_dotNet_delayTime{queue="clientmessagebusqueue"} > 600
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Command+System+-+Client+Message+Bus+Queue"
+
+      - alert: Command System - Client Message Bus Transactional Queue
+        expr: app_monitoring_dotNet_delayTime{queue="clientmessagebustransactionalqueue"} > 600
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Command+System+-+Client+Message+Bus+Transactional+Queue"
+
+      - alert: dotNET Logging - AMQP Log Event Queue
+        expr: app_monitoring_dotNet_delayTime{queue="amqplogeventqueue"} > 180
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/dotNET+Logging+-+AMQP+Log+Event+Queue"
+
+      - alert: dotNET Logging - Client Event Log Error Queue
+        expr: app_monitoring_dotNet_msgCount{queue="clienteventlogerrorqueue"} > 1
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/dotNET+Logging+-+Client+Event+Log+Error+Queue"
+
+      - alert: dotNET Logging - Client Event Log Queue
+        expr: app_monitoring_dotNet_delayTime{queue="clienteventlogqueue"} > 600 or app_monitoring_dotNet_msgCount{queue="clienteventlogqueue"} > 10000
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/dotNET+Logging+-+Client+Event+Log+Queue"
+
+      - alert: dotNET Logging - AMQP Log Event Document log 2 Queue
+        expr: app_monitoring_dotNet_delayTime{queue="amqplogeventqueuedoclog2"} > 180
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/dotNET+Logging+-+AMQP+Log+Event+%28Document+log+2%29+Queue"
+
+      - alert: dotNET Logging - AMQP Log Event Document log Queue
+        expr: app_monitoring_dotNet_delayTime{queue="amqplogeventqueuedoclog"} > 180
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/dotNET+Logging+-+AMQP+Log+Event+%28Document+log%29+Queue"
+
+      - alert: dotNET Logging - AMQP Log Event Queue Incoming
+        expr: app_monitoring_dotNet_delayTime{queue="incominggwtransactionlogerrorqueue"} > 180
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: ""
+
+      - alert: dotNET Logging - AMQP Log Event Transaction log Queue
+        expr: app_monitoring_dotNet_delayTime{queue="amqplogeventqueuetranslog"} > 180
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/dotNET+Logging+-+AMQP+Log+Event+%28Transaction+log%29+Queue"
+
+      - alert: dotNET Logging - AMQP Log Event VLTrader In Queue
+        expr: app_monitoring_dotNet_delayTime{queue="amqplogeventqueuevltin"} > 180
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/dotNET+Logging+-+AMQP+Log+Event+%28VLTrader+In%29+Queue"
+
+      - alert: dotNET Logging - AMQP Log Event VLTrader Out Queue
+        expr: app_monitoring_dotNet_delayTime{queue="amqplogeventqueuevltout"} > 180
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/dotNET+Logging+-+AMQP+Log+Event+%28VLTrader+Out%29+Queue"
+
+      - alert: Rule Processor issue (Automatic Error handling)
+        expr: app_monitoring_tlog{name="tpruleprocessor - ESException"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.host }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "Go talk with Torben"
+
+      - alert: DBGW - Payload is missing
+        expr: app_monitoring_tlog{name="DBGW - Payload is missing"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-log-crw-pseudohost"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/LogStashAll+-+DBGW+-+Payload+is+missing"
+
+      - alert: Problems - ebroker Response de-serialization failed
+        expr: app_monitoring_tlog{name="Problems - ebroker Response de-serialization failed"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "msprod-pseudohost"
+          summary: "# {{ $value }}"
+          description: "msprod-pseudohost"
+          runbook: ""
+
+      - alert: MSPULL - In processing state
+        expr: app_monitoring_tlog{name="MSPULL - In processing state"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "msprod-pseudohost"
+          summary: "# {{ $value }}"
+          description: "msprod-pseudohost"
+          runbook: ""
+
+      - alert: Logshovel Retry
+        expr: logshovel_retry_files_total{job="prod"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: ""
+
+      - alert: Memorydump - java
+        expr: memorydump_files_total{job="prod"} > 0
+        for: 15m
+        labels:
+          severity: "dev_support"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "# {{ $value }}"
+          description: "Application has dumped memory"
+          runbook: ""
+
+      - alert: NullFiles - corruption
+        expr: null_files_total{job="prod"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "# {{ $value }}"
+          description: "VLT has corrupted config files"
+          runbook: ""
+
+      - alert: TLOGUncrunchedSQLVLTRADERVLSEND
+        expr: vltrader_vlsend_files_total{job="prod"} > 0
+        for: 15m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Uncrunched+VLTRADER.VLSEND"
+
+      - alert: TLOGUncrunchedSQLVLTRADERVLTRANSFERS
+        expr: vltrader_vltransfer_files_total{job="prod"} > 0
+        for: 15m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "# {{ $value }}"
+          description: ""
+          runbook: "https://wiki.truecommerce.com/display/TPS/Transaction+Log+-+Uncrunched+VLTRADER.VLTRANSFERS"
+
+      - alert: SOR Validation
+        expr: app_monitoring_tlog{name="SOR Validation"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "gen-web-int-pseudohost"
+          summary: "# {{ $value }}"
+          description: "SOR validation has failed"
+          runbook: "https://wiki.truecommerce.com/display/TPS/SOR+Validations"
+
+      - alert: VLProxyListeningPortNotOpen
+        expr: probe_success{job="vlprx-responds"} == 0
+        for: 15m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: ""
+          description: "TCP Port not responding"
+          runbook: ""
+
+      - alert: SMTPListeningPortNotOpen
+        expr: probe_success{job="smtp-responds"} == 0
+        for: 15m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: ""
+          description: "TCP Port not responding"
+          runbook: ""
+
+      - alert: NetSuiteListeningPortNotOpen
+        expr: probe_success{job="netsuite-responds"} == 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: ""
+          description: "TCP Port not responding"
+          runbook: ""
+
+      - alert: MessageAgePostfixQueue
+        expr: sum(postfix_showq_message_age_seconds_count) by (instance) > 200
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "# {{ $value }}"
+          description: "Message age is above configured threshold"
+          runbook: ""
+
+      - alert: GitListeningPortNotOpen
+        expr: probe_success{job="git-responds"} == 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: ""
+          description: "TCP Port not responding"
+          runbook: ""
+
+      - alert: SSLCertificateExpires
+        expr: farmer_monitoring_certificates_total{status="expires"} > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.name }}"
+          description: "SSL Certificate expires"
+          runbook: ""

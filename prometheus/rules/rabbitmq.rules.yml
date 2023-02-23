@@ -1,0 +1,305 @@
+groups:
+  - name: rabbitmq.alert.rules
+    rules:
+      - alert: RabbitMQ - dbg.*.app.queue
+        expr: rabbitmq_queue_messages{queue=~"dbg.*.app.queue",env="production"} >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - eb.*.app.queue | es10.app.queue
+        expr: rabbitmq_queue_messages{queue=~"eb.*.app.queue|es10.app.queue",env="production"}  >= 10000
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - amqpms.app.queue
+        expr: rabbitmq_queue_messages{queue=~"amqpms.app.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - analyzer.app.queue
+        expr: rabbitmq_queue_messages{queue=~"analyzer.app.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+
+      - alert: RabbitMQ - err.queue
+        expr: rabbitmq_queue_messages{queue=~"err.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - msconvert2.app.queue
+        expr: rabbitmq_queue_messages{queue=~"msconvert2.app.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - oiosigw_default.app.queue
+        expr: rabbitmq_queue_messages{queue=~"oiosigw_default.app.queue",env="production"}  >= 5000
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - oiosigw_high.app.queue
+        expr: rabbitmq_queue_messages{queue=~"oiosigw_high.app.queue",env="production"}  >= 1000
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - router.app.queue
+        expr: rabbitmq_queue_messages{queue=~"router.app.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+
+      - alert: RabbitMQ - router_high.app.queue
+        expr: rabbitmq_queue_messages{queue=~"router_high.app.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - splitter.app.queue
+        expr: rabbitmq_queue_messages{queue=~"splitter.app.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - splitter_high.app.queue
+        expr: rabbitmq_queue_messages{queue=~"splitter_high.app.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - validator.app.queue
+        expr: rabbitmq_queue_messages{queue=~"validator.app.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - validator_high.app.queue
+        expr: rabbitmq_queue_messages{queue=~"validator_high.app.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - x400.app.queue
+        expr: rabbitmq_queue_messages{queue=~"x400.app.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+
+      - alert: RabbitMQ - xmlsigning.app.queue
+        expr: rabbitmq_queue_messages{queue=~"xmlsigning.app.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - logging.logstash.queue
+        expr: rabbitmq_queue_messages{queue="logging.logstash.queue",env="production"}  >= 5000
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - logstash.events.queue
+        expr: rabbitmq_queue_messages{queue="logstash.events.queue",env="production"}  >= 5000
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - amqpms.to_ms.queue
+        expr: rabbitmq_queue_messages{queue="amqpms.to_ms.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - rabbitmq.log.error.queue
+        expr: rabbitmq_queue_messages{queue="rabbitmq.log.error.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - transaction.events.an.in.doc.upd.queue
+        expr: rabbitmq_queue_messages{queue="transaction.events.an.in.doc.upd.queue",env="production"}  >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - transaction.events.an.in.queue
+        expr: rabbitmq_queue_messages{queue="transaction.events.an.in.queue",env="production"}  >= 1000
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - transaction.events.eng.queue
+        expr: rabbitmq_queue_messages{queue="transaction.events.eng.queue",env="production"} >= 1000
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - transaction.events.gw.in.queue
+        expr: rabbitmq_queue_messages{queue="transaction.events.gw.in.queue",env="production"} >= 1000
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - transaction.events.gw.out.queue
+        expr: rabbitmq_queue_messages{queue="transaction.events.gw.out.queue",env="production"} >= 1000
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - transaction.events.router.queue
+        expr: rabbitmq_queue_messages{queue="transaction.events.router.queue",env="production"} >= 1000
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - transaction.events.splitter.queue
+        expr: rabbitmq_queue_messages{queue="transaction.events.splitter.queue",env="production"} >= 1000
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - transaction.events.validator.queue
+        expr: rabbitmq_queue_messages{queue="transaction.events.validator.queue",env="production"} >= 1000
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - events.error.queue
+        expr: rabbitmq_queue_messages{queue="events.error.queue",env="production"} >= 1000
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"
+
+      - alert: RabbitMQ - mspull.app.queue
+        expr: rabbitmq_queue_messages{queue="mspull.app.queue"} >= 100
+        for: 30m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.queue }} exceeds threshold"
+          description: "{{$value}} messages in queue"

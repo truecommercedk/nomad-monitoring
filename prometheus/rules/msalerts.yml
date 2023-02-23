@@ -1,0 +1,29 @@
+groups:
+  - name: MSAlerts
+    rules:
+      - alert: 910225 KMDOutgoingCRITICALFile1h
+        expr: app_monitoring_tlog{name="KMD-OutgoingCRITICALFile1h"} > 10
+        for: 15m
+        annotations:
+          title: 'KMD-OutgoingCRITICALFile1h'
+          description: 'KMD-OutgoingCRITICALFile1h'
+        labels:
+          severity: 'netsuite'
+
+      - alert: Transaction Processing MS - Put On Hold
+        expr: app_monitoring_tlog{name="Transaction Processing - Put On Hold"} > 0
+        for: 15m
+        annotations:
+          title: 'Transaction Processing - Put On Hold'
+          description: 'Action required for message with status=OnHold, see Wiki-page: https://wiki.truecommerce.com/x/k4n9EQ'
+        labels:
+          severity: 'netsuite'
+
+      - alert: CustomerFlowError
+        expr: app_monitoring_tlog{name="FalabellaWS-SodimacWS_PROD"} > 4
+        for: 15m
+        annotations:
+          title: '220082_FalabellaWS_PROD,220081_SodimacWS_PROD, Error Interno del Servidor'
+          description: 'Contact Thomas Jørgensen or Tore Jensen'
+        labels:
+          severity: 'netsuite'

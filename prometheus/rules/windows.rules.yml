@@ -1,0 +1,69 @@
+groups:
+  - name: windows.rules
+    rules:
+      - alert: WindowsServerCpuUsage
+        expr: 100 - (avg by (group,instance,env) (rate(windows_cpu_time_total{mode="idle",env="production"}[2m])) * 100) > 95
+        for: 60m
+        labels:
+          severity: critical
+        annotations:
+          group: "{{ $labels.group }}"
+          host: "{{ $labels.instance }}"
+          summary: "{{ $value }} % Used"
+          description: "CPU Usage is more than 95%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: WindowsServerMemoryUsage
+        expr: 100 - ((windows_os_physical_memory_free_bytes{env="production"} / windows_cs_physical_memory_bytes) * 100) > 95
+        for: 60m
+        labels:
+          severity: critical
+        annotations:
+          group: "{{ $labels.group }}"
+          host: "{{ $labels.instance }}"
+          summary: "{{ $value }} % Used"
+          description: "Memory usage is more than 95%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: WindowsServerOutOfDiskSpace
+        expr: 100.0 - 100 * ((windows_logical_disk_free_bytes{volume!="HarddiskVolume1",env="production"} / 1024 / 1024 ) / (windows_logical_disk_size_bytes / 1024 / 1024)) > 95
+        for: 15m
+        labels:
+          severity: critical
+        annotations:
+          group: "{{ $labels.group }}"
+          host: "{{ $labels.instance }}"
+          summary: "{{ $value }} % Used"
+          description: "Disk usage is more than 95%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: WindowsServerTimeOffset
+        expr: max by (group,instance,env) (windows_time_computed_time_offset_seconds{env="production"}) > 1
+        for: 15m
+        labels:
+          severity: critical
+        annotations:
+          group: "{{ $labels.group }}"
+          host: "{{ $labels.instance }}"
+          summary: "{{ $value }} Seconds offset"
+          description: "NTP client time is more than 1sec offset \n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: WindowsServerServiceStopped
+        expr: sum by (group,instance,name,env) (windows_service_state{env="production",state!="running", name!~"sppsvc|gupdate|remoteregistry|wbiosrvc|trustedinstaller|edgeupdate|shellhwdetection"} == 1) + on (group,instance,name,env) sum by (group,instance,name,env) (windows_service_start_mode{env="production",start_mode="auto"} == 1)
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          group: "{{ $labels.group }}"
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.name }}"
+          description: "Windows Service is not running\n LABELS = {{ $labels }}"
+
+      - alert: WindowsServerThreadsExceeded
+        expr: windows_system_threads{env="production", instance=~".*app-vlt.*"} > 3500
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "# {{ $value }}"
+          description: "Number of OS threads has increased above threshold of 3400, impacting the VLT performance, recommended action is restarting"
+          runbook: ""
+

@@ -1,0 +1,33 @@
+groups:
+  - name: http.rules
+    rules:
+      - alert: Core - Server Management not responding
+        expr: probe_success{ job="core-server-mgmt"} == 0
+        for: 15m
+        labels:
+          severity: "warning"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "Check failing service in URL/Instance"
+          description: "HTTP not responding\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: Core - HTTP Not responding
+        expr: probe_success{ job="http-responds"} == 0
+        for: 15m
+        labels:
+          severity: "warning"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "Check failing service in URL/Instance"
+          description: "HTTP not responding\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+          runbook: "https://wiki.truecommerce.com/display/TPS/Core+-+HTTP+Not+responding"
+
+      - alert: Shared Services - SOR Download Responds
+        expr: probe_success{ job="sharedservice-sor"} == 0
+        for: 15m
+        labels:
+          severity: "warning"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: ""
+          description: "HTTP not responding\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"

@@ -1,0 +1,46 @@
+groups:
+  - name: windows_demo.rules
+    rules:
+      - alert: WindowsServerCpuUsage
+        expr: 100 - (avg by (group,instance,env) (rate(windows_cpu_time_total{mode="idle",env="demo"}[2m])) * 100) > 95
+        for: 60m
+        labels:
+          severity: information
+        annotations:
+          group: "{{ $labels.group }}"
+          host: "{{ $labels.instance }}"
+          summary: "{{ $value }} % Used"
+          description: "CPU Usage is more than 95%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: WindowsServerMemoryUsage
+        expr: 100 - ((windows_os_physical_memory_free_bytes{env="demo"} / windows_cs_physical_memory_bytes) * 100) > 95
+        for: 60m
+        labels:
+          severity: information
+        annotations:
+          group: "{{ $labels.group }}"
+          host: "{{ $labels.instance }}"
+          summary: "{{ $value }} % Used"
+          description: "Memory usage is more than 95%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: WindowsServerOutOfDiskSpace
+        expr: 100.0 - 100 * ((windows_logical_disk_free_bytes{volume!="HarddiskVolume1",env="demo"} / 1024 / 1024 ) / (windows_logical_disk_size_bytes / 1024 / 1024)) > 95
+        for: 15m
+        labels:
+          severity: information
+        annotations:
+          group: "{{ $labels.group }}"
+          host: "{{ $labels.instance }}"
+          summary: "{{ $value }} % Used"
+          description: "Disk usage is more than 95%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: WindowsServerTimeOffset
+        expr: max by (group,instance,env) (windows_time_computed_time_offset_seconds{env="demo"}) > 1
+        for: 15m
+        labels:
+          severity: information
+        annotations:
+          group: "{{ $labels.group }}"
+          host: "{{ $labels.instance }}"
+          summary: "{{ $value }} Seconds offset"
+          description: "NTP client time is more than 1sec offset \n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"

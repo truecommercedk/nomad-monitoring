@@ -1,0 +1,57 @@
+groups:
+  - name: elastic.rules
+    rules:
+      - alert: Elastic disk usage
+        expr: round(100 - sum by(name) (elasticsearch_filesystem_data_available_bytes) / sum by(name) (elasticsearch_filesystem_data_size_bytes) * 100) > 85
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.name }}"
+          summary: "{{ $value }} % Used"
+          description: ""
+          runbook: "TODO"
+
+      - alert: Elastic shards warning threshold exceeded
+        expr: elasticsearch_cluster_health_active_shards{cluster="b2bi-02",env="production"} > 5500
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.cluster }}"
+          summary: "{{ $value }} # Shards"
+          description: ""
+          runbook: "TODO"
+
+      - alert: Elastic shards critical threshold exceeded
+        expr: elasticsearch_cluster_health_active_shards{cluster="b2bi-02",env="production"} > 6000
+        for: 15m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.cluster }}"
+          summary: "{{ $value }} # Shards"
+          description: ""
+          runbook: "TODO"
+
+      - alert: Elastic shards warning threshold exceeded - audit-cluster
+        expr: elasticsearch_cluster_health_active_shards{cluster="audit-cluster",env="production"} > 20000
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.cluster }}"
+          summary: "{{ $value }} # Shards"
+          description: ""
+          runbook: "TODO"
+
+      - alert: Elastic health status
+        expr: elasticsearch_cluster_health_status{color="red"}==1 or (elasticsearch_cluster_health_status{color="yellow"}==1)  > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.cluster }}"
+          summary: "{{ $labels.color }} status"
+          description: ""
+          runbook: "TODO"
