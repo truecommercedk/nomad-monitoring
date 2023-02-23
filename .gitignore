@@ -18,4 +18,5 @@
 *.exe
 *.tfstate
 *.tfstate.backup
+.idea
 
