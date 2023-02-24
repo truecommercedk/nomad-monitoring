@@ -13,7 +13,7 @@ groups:
 
       # Alert for offline volume
       - alert: Volume state offline
-        expr: volume_labels{state="offline"} == 1
+        expr: volume_labels{state="offline", cluster !~"DC1-A300|DC2-A300"} == 1
         for: 5m
         labels:
           severity: "critical"
