@@ -920,7 +920,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "elasticsearch_cluster_health_status{cluster=\"b2bi-02\",color=\"red\"}==1 or (elasticsearch_cluster_health_status{cluster=\"$cluster\",color=\"yellow\"}==1)+2 or\n(elasticsearch_cluster_health_status{cluster=\"b2bi-02\",color=\"green\"}==1)+4 ",
+          "expr": "elasticsearch_cluster_health_status{cluster=\"b2bi-02\",color=\"red\"}==1 or (elasticsearch_cluster_health_status{cluster=\"b2bi-02\",color=\"yellow\"}==1)+2 or\n(elasticsearch_cluster_health_status{cluster=\"b2bi-02\",color=\"green\"}==1)+4 ",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -2125,8 +2125,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#299c46",
-                "value": null
+                "color": "#299c46"
               },
               {
                 "color": "rgba(237, 129, 40, 0.89)",
@@ -2208,6 +2207,6 @@
   "timezone": "",
   "title": "TechOps - Ebroker",
   "uid": "7xIp2GJnl",
-  "version": 6,
+  "version": 7,
   "weekStart": ""
 }
