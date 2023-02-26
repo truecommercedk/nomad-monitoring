@@ -9,3 +9,4 @@ providers:
   editable: false
   options:
     path: /local/dashboards
+    foldersFromFilesStructure: true
