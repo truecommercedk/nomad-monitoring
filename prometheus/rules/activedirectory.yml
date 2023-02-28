@@ -2,7 +2,7 @@ groups:
   - name: AD Check rules
     rules:
       - alert: Domain Admins Group Assignment
-        expr: ad_users{group="Domain Admins",user!~"admanbl|admdkje|admmala|admthla|admthel"} == 1
+        expr: ad_users{group="Domain Admins",user!~"admanbl|admdkje|admmala|admthla|admthel|Administrator|sacna|salici|sanac|saprtg|sasep|satcsql|vsync"} == 1
         for: 15m
         annotations:
           description: 'User not allowed in AD group'
