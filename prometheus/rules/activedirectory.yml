@@ -1,0 +1,90 @@
+groups:
+  - name: AD Check rules
+    rules:
+      - alert: Domain Admins Group Assignment
+        expr: ad_users{group="Domain Admins",user!~"admanbl|admdkje|admmala|admthla|admthel"} == 1
+        for: 15m
+        annotations:
+          description: 'User not allowed in AD group'
+        labels:
+          severity: 'information'
+
+      - alert: MonitoringAdmins Group Assignment
+        expr: ad_users{group="MonitoringAdmins",user!~"admanbl|admdkje|admmala|admthla|admthel"} == 1
+        for: 15m
+        annotations:
+          description: 'User not allowed in AD group'
+        labels:
+          severity: 'information'
+
+      - alert: EP_Prod_Administrators Group Assignment
+        expr: ad_users{group="EP_Prod_Administrators",user!~"prodthla|prodxvim|prodthja|prodanbl|prodmala"} == 1
+        for: 15m
+        annotations:
+          description: 'User not allowed in AD group'
+        labels:
+          severity: 'information'
+
+      - alert: TS_Prod_Administrators Group Assignment
+        expr: ad_users{group="TS_Prod_Administrators",user!~"prodanbl|prodthla|prodmala|prodelha|prodthel"} == 1
+        for: 15m
+        annotations:
+          description: 'User not allowed in AD group'
+        labels:
+          severity: 'information'
+
+      - alert: VMWare_Admins Group Assignment
+        expr: ad_users{group="VMWare_Admins",user!~"admthla|admanbl|sabackup|admmala|admthel"} == 1
+        for: 15m
+        annotations:
+          description: 'User not allowed in AD group'
+        labels:
+          severity: 'information'
+
+      - alert: Valhal_SQL_Administrators
+        expr: ad_users{group="Valhal_SQL_Administrators",user!~"admthla|admanbl|admmala|admtbro"} == 1
+        for: 15m
+        annotations:
+          description: 'User not allowed in AD group'
+        labels:
+          severity: 'information'
+
+      - alert: MT_SuperUser Group Assignment
+        expr: ad_users{group="MT_SuperUser",user!~"admjemu|admanbl|admheje|admanjo|admchjh|admelha|admtorj|admpiol|admniba|admkakl|admjebo|admchfi|admketl"} == 1
+        for: 15m
+        annotations:
+          description: 'User not allowed in AD group'
+        labels:
+          severity: 'information'
+
+      - alert: MT_PersonalContent Group Assignment
+        expr: ad_users{group="MT_PersonalContent",user!~"admheje|admanjo|admpiol|admniba|admkakl|admjebo|admchfi|admketl"} == 1
+        for: 15m
+        annotations:
+          description: 'User not allowed in AD group'
+        labels:
+          severity: 'information'
+
+      - alert: Jump_Administrators Group Assignment
+        expr: ad_users{group="Jump_Administrators",user!~"admthla|prodanbl|prodthla|prodmala|prodtbro|admthel"} == 1
+        for: 15m
+        annotations:
+          description: 'User not allowed in AD group'
+        labels:
+          severity: 'information'
+
+      - alert: Hub_Administrators Group Assignment
+        expr: ad_users{group="Hub_Administrators",user!~"prodthla|proddkje|prodheje|prodpra|prodanjo|prodtbro|prodjemu|prodalka|prodpiol"} == 1
+        for: 15m
+        annotations:
+          description: 'User not allowed in AD group'
+        labels:
+          severity: 'information'
+
+      - alert: Enterprise Admins Group Assignment
+        expr: ad_users{group="Enterprise Admins",user!~"vsync|Administrator"} == 1
+        for: 15m
+        annotations:
+          description: 'User not allowed in AD group'
+        labels:
+          severity: 'information'
