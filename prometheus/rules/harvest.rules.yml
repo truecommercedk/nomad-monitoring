@@ -61,26 +61,6 @@ groups:
           summary: "Snapmirror [{{ $labels.relationship_id }}] has [{{$value}}] lag time (in secs)"
           description: "Snapmirror [{{ $labels.relationship_id }}] has [{{$value}}] lag time (in secs)"
 
-        # Alert for volume running out of space
-      - alert: NetApp Volume out of space
-        expr: volume_space_physical_used_percent > 95
-        for: 5m
-        labels:
-          severity: "critical"
-        annotations:
-          summary: "Volume [{{ $labels.volume }}] has [{{$value}}] used space"
-          description: "Volume [{{ $labels.volume }}] has [{{$value}}] used space"
-
-        # Alert for aggr running out of space
-      - alert: NetApp Aggregate out of space
-        expr: aggr_space_used_percent > 95
-        for: 5m
-        labels:
-          severity: "critical"
-        annotations:
-          summary: "Aggregate [{{ $labels.aggr }}] has [{{$value}}] used space"
-          description: "Aggregate [{{ $labels.aggr }}] has [{{$value}}] used space"
-
         # Alert for NeteApp health
       - alert: NetApp Health
         expr: node_labels{healthy!="true"}
