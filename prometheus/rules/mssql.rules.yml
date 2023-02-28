@@ -1,0 +1,12 @@
+groups:
+  - name: mssql.rules
+    rules:
+      - alert: MSSQL Maint Plan not running
+        expr: mssql_maintenance_jobs == 0
+        for: 60m
+        labels:
+          severity: information
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "MSSQL maint plan not running {{ $labels.task }}"
+          description: "MSSQL maint plan not running {{ $labels.task }}"
