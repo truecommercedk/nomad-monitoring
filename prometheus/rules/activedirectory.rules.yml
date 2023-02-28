@@ -41,7 +41,7 @@ groups:
         labels:
           severity: 'information'
 
-      - alert: Valhal_SQL_Administrators
+      - alert: Valhal_SQL_Administrators Group Assignment
         expr: ad_users{group="Valhal_SQL_Administrators",user!~"admthla|admanbl|admmala|admtbro"} == 1
         for: 15m
         annotations:
