@@ -100,7 +100,7 @@
                   {
                     "targetBlank": false,
                     "title": "",
-                    "url": "https://grafana.b2bi.dk/d/Ojy9fUCns/windows-server-overview?orgId=1&var-interval=60s&var-server=${__value.raw}"
+                    "url": "https://grafana.b2bi.dk/d/Ojy9fUCns/techops-windows-server-metrics?orgId=1&var-interval=60s&var-server=${__value.raw}"
                   }
                 ]
               },
