@@ -100,7 +100,7 @@
                   {
                     "targetBlank": false,
                     "title": "",
-                    "url": "https://grafana.b2bi.dk/d/Ojy9fUCns/techops-windows-server-metrics?orgId=1&var-interval=60s&var-server=${__value.raw}"
+                    "url": "https://grafana.b2bi.dk/d/Ojy9fUCns/techops-windows-server-metrics?orgId=1&var-interval=60s&var-server=${__value.raw}&var-job=${job}"
                   }
                 ]
               },
@@ -1801,7 +1801,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "prod",
           "value": "prod"
         },
@@ -1828,8 +1828,8 @@
       {
         "current": {
           "selected": false,
-          "text": "adm-es-mon-001.valhal.lan:9182",
-          "value": "adm-es-mon-001.valhal.lan:9182"
+          "text": "tstctm001.tsprod.lan:9182",
+          "value": "tstctm001.tsprod.lan:9182"
         },
         "datasource": {
           "type": "prometheus",
@@ -1889,6 +1889,6 @@
   "timezone": "browser",
   "title": "TechOps - Windows Server Metrics",
   "uid": "Ojy9fUCns",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
