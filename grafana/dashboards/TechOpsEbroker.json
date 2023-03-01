@@ -48,12 +48,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "green",
-                "value": 1
+                "color": "red",
+                "value": 80
               }
             ]
           },
@@ -62,8 +62,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 4,
+        "h": 2,
+        "w": 7,
         "x": 0,
         "y": 0
       },
@@ -72,7 +72,7 @@
         "colorMode": "background",
         "graphMode": "none",
         "justifyMode": "auto",
-        "orientation": "horizontal",
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -80,8 +80,7 @@
           "fields": "",
           "values": false
         },
-        "text": {},
-        "textMode": "name"
+        "textMode": "none"
       },
       "pluginVersion": "9.3.2",
       "targets": [
@@ -100,91 +99,7 @@
           "refId": "A"
         }
       ],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "rgb(31, 120, 193)",
-            "mode": "fixed"
-          },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 4,
-        "y": 0
-      },
-      "id": 113,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "none",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.3.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "elasticsearch_cluster_health_active_shards{cluster=\"b2bi-02\"}",
-          "format": "table",
-          "instant": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A",
-          "step": 60
-        }
-      ],
-      "title": "ES Total Shards",
+      "title": "Ebroker instances",
       "type": "stat"
     },
     {
@@ -484,9 +399,9 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 3,
-        "x": 4,
-        "y": 3
+        "w": 7,
+        "x": 0,
+        "y": 2
       },
       "id": 111,
       "links": [],
@@ -650,31 +565,19 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "rgb(31, 120, 193)",
+            "mode": "fixed"
           },
           "mappings": [
             {
               "options": {
-                "N/A": {
-                  "color": "#299c46",
-                  "text": "0"
-                },
-                "No Data": {
-                  "color": "#299c46",
-                  "text": "0"
-                }
-              },
-              "type": "value"
-            },
-            {
-              "options": {
                 "match": "null",
                 "result": {
-                  "color": "#299c46",
-                  "text": "0"
+                  "text": "N/A"
                 }
               },
               "type": "special"
@@ -684,15 +587,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#299c46",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "rgba(237, 129, 40, 0.89)",
-                "value": 50
-              },
-              {
-                "color": "#d44a3a",
+                "color": "red",
                 "value": 80
               }
             ]
@@ -702,17 +601,17 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 4,
-        "y": 6
+        "h": 3,
+        "w": 7,
+        "x": 0,
+        "y": 5
       },
-      "id": 115,
+      "id": 113,
       "links": [],
       "maxDataPoints": 100,
       "options": {
         "colorMode": "none",
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
@@ -732,13 +631,18 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "count(vmware_host_maintenance_mode{cluster_name=~\"bifrost\"}==1) OR vector(0)",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
+          "exemplar": false,
+          "expr": "elasticsearch_cluster_health_active_shards{cluster=\"b2bi-02\"}",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A",
+          "step": 60
         }
       ],
-      "title": "ESXi Host In Maintenance",
+      "title": "ES Total Shards",
       "type": "stat"
     },
     {
@@ -984,6 +888,102 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "N/A": {
+                  "color": "#299c46",
+                  "text": "0"
+                },
+                "No Data": {
+                  "color": "#299c46",
+                  "text": "0"
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "#299c46",
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#299c46",
+                "value": null
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "value": 50
+              },
+              {
+                "color": "#d44a3a",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 7,
+        "x": 0,
+        "y": 8
+      },
+      "id": 115,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "count(vmware_host_maintenance_mode{cluster_name=~\"bifrost\"}==1) OR vector(0)",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "ESXi Host In Maintenance",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1055,7 +1055,7 @@
         "h": 4,
         "w": 7,
         "x": 0,
-        "y": 10
+        "y": 11
       },
       "id": 107,
       "options": {
@@ -1496,10 +1496,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 7,
         "x": 0,
-        "y": 14
+        "y": 15
       },
       "id": 106,
       "options": {
@@ -2177,6 +2177,6 @@
   "timezone": "",
   "title": "TechOps - Ebroker",
   "uid": "7xIp2GJnl",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
