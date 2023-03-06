@@ -24,12 +24,12 @@ job "Filestatusexporter" {
       driver = "docker"
 
       config {
-        image = "truecommercedk/filestatus_exporter:v0.0.6"
+        image = "truecommercedk/filestatus_exporter:v0.0.7"
 		ports = ["http"]
       }
 	  
 	  env {
-		MT_HOST = "service.b2bi.dk"
+        PORT = "$${NOMAD_PORT_http}"
       }
 	  
 	  resources {

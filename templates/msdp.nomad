@@ -8,22 +8,22 @@ job "msdp-webapp" {
 		dns {
 			servers = ["10.15.91.234", "10.15.91.235", "10.15.91.228"]
 		}
-      port "http" {
-        to = -1
-      }
+		port "http" {
+			static = 8081
+		}
     }
 	
-	service {
-      name = "MsdpWebApp"
-      port = "http"
+#	service {
+#      name = "MsdpWebApp"
+#      port = "http"
 
-      check {
-        type     = "http"
-        path     = "/users/login"
-        interval = "2s"
-        timeout  = "2s"
-      }
-    }
+#      check {
+#        type     = "http"
+#        path     = "/users/login"
+#        interval = "2s"
+#        timeout  = "2s"
+#      }
+#    }
 	
 		task "server" {
 			driver = "docker"

@@ -23,11 +23,15 @@ job "dotnetexporter" {
       driver = "docker"
 
       config {
-        image = "truecommercedk/dotnet_exporter:v0.0.11"
+        image = "truecommercedk/dotnet_exporter:v0.0.12"
 		volumes = [
           "local/dotnet_config.yml:/app/dotnet_config.yml",
         ]
 		ports = ["http"]
+      }
+
+      env {
+        PORT = "$${NOMAD_PORT_http}"
       }
 	  
       template {

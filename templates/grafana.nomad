@@ -17,7 +17,7 @@ job "Grafana" {
     volume "grafanadata" {
       type      = "host"
       read_only = false
-      source    = "grafana_host"
+      source    = "grafana_nfs"
     }
 
     restart {
@@ -46,11 +46,6 @@ datasources:
     jsonData:
       timeInterval: 60s
       timeout: 60
-
-#  - name: Loki
-#    type: loki
-#    access: proxy
-#    url: http://loki.service.dc1.consul:3100
 EOTC
         destination = "local/provisioning/datasources/ds.yaml"
         change_mode   = "signal"
@@ -63,13 +58,11 @@ apiVersion: 1
 
 providers:
 - name: 'default'
-  orgId: 1
-  folder: ''
   type: file
-  disableDeletion: false
-  editable: false
+  updateIntervalSeconds: 30
   options:
     path: /local/dashboards
+    foldersFromFilesStructure: true
 EOTC
         destination = "local/provisioning/dashboards/dashboards.yaml"
         change_mode   = "signal"

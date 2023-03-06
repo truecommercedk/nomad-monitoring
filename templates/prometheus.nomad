@@ -14,12 +14,6 @@ job "Prometheus" {
       }
     }
 
-    volume "promdata" {
-      type      = "host"
-      read_only = false
-      source    = "prometheus_host"
-    }
-
     volume "promconfig" {
       type      = "host"
       read_only = false
@@ -37,14 +31,8 @@ job "Prometheus" {
       user = "root"
 
       volume_mount {
-        volume      = "promdata"
-        destination = "/var/lib/prometheus"
-        read_only   = false
-      }
-
-      volume_mount {
         volume      = "promconfig"
-        destination = "/etc/prometheus"
+        destination = "/var/lib/prometheus"
         read_only   = false
       }
 
@@ -67,7 +55,7 @@ scrape_configs:
   - job_name: 'prod'
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/prod-servers.yml
+          - /var/lib/prometheus/hosts/prod-servers.yml
     relabel_configs:
       - target_label: env
         replacement: production
@@ -75,7 +63,7 @@ scrape_configs:
   - job_name: 'test'
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/test-servers.yml
+          - /var/lib/prometheus/hosts/test-servers.yml
     relabel_configs:
       - target_label: env
         replacement: test
@@ -83,7 +71,7 @@ scrape_configs:
   - job_name: 'demo'
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/demo-servers.yml
+          - /var/lib/prometheus/hosts/demo-servers.yml
     relabel_configs:
       - target_label: env
         replacement: demo
@@ -91,7 +79,7 @@ scrape_configs:
   - job_name: 'netalogue'
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/netalogue.yml
+          - /var/lib/prometheus/hosts/netalogue.yml
     relabel_configs:
       - target_label: env
         replacement: netalogue
@@ -99,7 +87,7 @@ scrape_configs:
   - job_name: 'dic'
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/dic-servers.yml
+          - /var/lib/prometheus/hosts/dic-servers.yml
     relabel_configs:
       - target_label: env
         replacement: dic
@@ -160,7 +148,7 @@ scrape_configs:
       module: [http_2xx]
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/core-server-mgmt.yml
+          - /var/lib/prometheus/hosts/core-server-mgmt.yml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -177,7 +165,7 @@ scrape_configs:
       module: [http_2xx]
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/http-responds.yml
+          - /var/lib/prometheus/hosts/http-responds.yml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -194,7 +182,7 @@ scrape_configs:
       module: [http_2xx]
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/sharedservice-sor.yml
+          - /var/lib/prometheus/hosts/sharedservice-sor.yml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -211,7 +199,7 @@ scrape_configs:
       module: [http_2xx]
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/sharedservice-dispatch.yml
+          - /var/lib/prometheus/hosts/sharedservice-dispatch.yml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -228,7 +216,7 @@ scrape_configs:
       module: [tcp_connect]
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/vlprx-responds.yml
+          - /var/lib/prometheus/hosts/vlprx-responds.yml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -245,7 +233,7 @@ scrape_configs:
       module: [tcp_connect]
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/smtp-responds.yml
+          - /var/lib/prometheus/hosts/smtp-responds.yml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -262,7 +250,7 @@ scrape_configs:
       module: [tcp_connect]
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/netsuite-responds.yml
+          - /var/lib/prometheus/hosts/netsuite-responds.yml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -279,7 +267,7 @@ scrape_configs:
       module: [tcp_connect]
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/git-responds.yml
+          - /var/lib/prometheus/hosts/git-responds.yml
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -307,7 +295,7 @@ scrape_configs:
         action: labeldrop
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/rabbitmq.yml
+          - /var/lib/prometheus/hosts/rabbitmq.yml
     relabel_configs:
       - target_label: env
         replacement: production
@@ -319,7 +307,7 @@ scrape_configs:
         action: labeldrop
     file_sd_configs:
        - files:
-          - /etc/prometheus/hosts/rabbitmq_test.yml
+          - /var/lib/prometheus/hosts/rabbitmq_test.yml
     relabel_configs:
       - target_label: env
         replacement: test
@@ -327,7 +315,7 @@ scrape_configs:
   - job_name: 'postfix'
     file_sd_configs:
       - files:
-          - /etc/prometheus/hosts/postfix.yml
+          - /var/lib/prometheus/hosts/postfix.yml
     relabel_configs:
       - target_label: env
         replacement: production
@@ -354,7 +342,7 @@ EOTC
         ports = ["http"]
         args = [
           "--config.file=/local/prometheus.yml",
-          "--storage.tsdb.path=/var/lib/prometheus",
+          "--storage.tsdb.path=/var/lib/prometheus/data",
           "--web.enable-admin-api",
           "--web.enable-lifecycle",
           "--storage.tsdb.retention.size=50GB"

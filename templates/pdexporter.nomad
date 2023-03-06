@@ -20,17 +20,28 @@ job "Pagerdutyexporter" {
     }	
 	
 	
-	task "pagerdutyexporterserver" {
+	task "server" {
       driver = "docker"
 
+      template {
+        destination = "$${NOMAD_SECRETS_DIR}/env.vars"
+        env         = true
+        change_mode = "noop"
+        data        = <<EOF
+				{{- with nomadVar "nomad/jobs/pdexporter" -}}
+				PD_APIKEY = {{.pd_apikey}}
+				PD_EPID	= {{.pd_epid}}
+				{{- end -}}
+				EOF
+      }
+
       config {
-        image = "truecommercedk/pagerduty_exporter:v1.0.1"
+        image = "truecommercedk/pagerduty_exporter:v1.0.2"
 		ports = ["http"]
       }
 	  
 	  env {
-		PD_APIKEY = "u+N_mHZRF86EkiAN4n7w"
-		PD_EPID = "PSZ8G4U"
+        PORT = "$${NOMAD_PORT_http}"
       }
 	  
 	  resources {

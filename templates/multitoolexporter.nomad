@@ -12,26 +12,29 @@ job "multitoolexporter" {
         static = 9141
       }
     }
-	
-	restart {
+
+    restart {
       attempts = 3
       delay    = "20s"
       mode     = "delay"
     }
-	
-	task "MultiToolExporterServer" {
+
+    task "MultiToolExporterServer" {
       driver = "docker"
+      env {
+        PORT = "$${NOMAD_PORT_http}"
+      }
 
       config {
-        image = "truecommercedk/multitool_exporter:latest"
-		volumes = [
+        image   = "truecommercedk/multitool_exporter:v0.0.32"
+        volumes = [
           "local/multitool_config.yml:/app/multitool_config.yml",
         ]
-		 ports = ["http"]
+        ports = ["http"]
       }
-	  
+
       template {
-        data        = <<EOTC
+        data = <<EOTC
 counters:
   - name: EB01 - Processing
     query: "Status=Processing and LatestReceiver=Eb01@eserver.dannet.dk Size(0)"
@@ -378,22 +381,22 @@ EOTC
         change_mode   = "signal"
         change_signal = "SIGHUP"
       }
-	  
-	  env {
-		MT_HOST = "service.b2bi.dk"
+
+      env {
+        MT_HOST = "service.b2bi.dk"
       }
-	  
-	  resources {
+
+      resources {
         cpu    = 100 # MHz
         memory = 128 # MB
       }
-	  
-	  service {
+
+      service {
         name = "multitoolexporter"
         port = "http"
-        tags = ["exporter","monitoring","prometheus"]
+        tags = ["exporter", "monitoring", "prometheus"]
 
-		check {
+        check {
           name     = "Exporter HTTP"
           type     = "http"
           path     = "/"
