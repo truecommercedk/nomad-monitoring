@@ -927,3 +927,25 @@ groups:
           summary: "{{ $labels.name }}"
           description: "SSL Certificate expires"
           runbook: ""
+
+      - alert: VLTExternalStatus
+        expr: count (vlt_monitoring_status{status="down"}) > 0
+        for: 15m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.name }}"
+          description: "Unable to login to VLT from AWS"
+          runbook: ""
+
+      - alert: VLTExternalLatency
+        expr: vlt_monitoring_status{status="up"} > 5000
+        for: 15m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $value }} ms"
+          description: "Login latency to VLT from AWS is high"
+          runbook: ""
