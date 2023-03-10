@@ -5,7 +5,7 @@ groups:
         expr: vmware_vm_snapshots > 3
         for: 30m
         labels:
-          severity: warning
+          severity: information
         annotations:
           host: "{{ $labels.host_name }}"
           summary: High Number of Snapshots (instance {{ $labels.instance }})
@@ -15,7 +15,7 @@ groups:
         expr: 100 * vmware_datastore_freespace_size / vmware_datastore_capacity_size < 5
         for: 30m
         labels:
-          severity: warning
+          severity: information
         annotations:
           host: "{{ $labels.ds_name }}"
           summary: "{{ $value }}"
@@ -25,7 +25,7 @@ groups:
         expr: vmware_host_sensor_state != 2
         for: 30m
         labels:
-          severity: warning
+          severity: information
         annotations:
           host: "{{ $labels.host_name }}"
           summary: "{{ $labels.name }}"

@@ -69,8 +69,8 @@ route:
     receiver: dic_alert
 
   - matchers:
-    - severity= "warning"
-    receiver: warning_alert
+    - severity= "information"
+    receiver: information_alert
 
   - matchers:
     - severity= "critical"
@@ -102,9 +102,9 @@ receivers:
    - url:  'https://nosnch.in/9bb83c6a13'
      send_resolved: false
 
-- name: warning_alert
+- name: information_alert
   email_configs:
-   - to: 'thomas.elsgaard@truecommerce.com'
+   - to: 'b2bi-techops@trucecommerce.com'
 
 - name: devsupport_notify
   email_configs:

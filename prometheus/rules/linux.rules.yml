@@ -15,7 +15,7 @@ groups:
         expr: (node_filesystem_avail_bytes * 100) / node_filesystem_size_bytes < 10 and ON (instance, device, mountpoint) predict_linear(node_filesystem_avail_bytes{fstype!~"tmpfs"}[1h], 24 * 3600) < 0 and ON (instance, device, mountpoint) node_filesystem_readonly == 0
         for: 2m
         labels:
-          severity: warning
+          severity: information
         annotations:
           host: "{{ $labels.instance }}"
           summary: Host disk will fill in 24 hours (instance {{ $labels.instance }})
@@ -25,7 +25,7 @@ groups:
         expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 95
         for: 15m
         labels:
-          severity: warning
+          severity: information
         annotations:
           host: "{{ $labels.instance }}"
           summary: Host high CPU load (instance {{ $labels.instance }})
@@ -35,7 +35,7 @@ groups:
         expr: avg by (instance) (rate(node_cpu_seconds_total{mode="iowait"}[5m])) * 100 > 5
         for: 15m
         labels:
-          severity: warning
+          severity: information
         annotations:
           host: "{{ $labels.instance }}"
           summary: Host CPU high iowait (instance {{ $labels.instance }})
@@ -45,7 +45,7 @@ groups:
         expr: (node_timex_offset_seconds > 0.05 and deriv(node_timex_offset_seconds[5m]) >= 0) or (node_timex_offset_seconds < -0.05 and deriv(node_timex_offset_seconds[5m]) <= 0)
         for: 15m
         labels:
-          severity: warning
+          severity: information
         annotations:
           host: "{{ $labels.instance }}"
           summary: Host clock skew (instance {{ $labels.instance }})
@@ -55,7 +55,7 @@ groups:
         expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 5
         for: 15m
         labels:
-          severity: warning
+          severity: information
         annotations:
           host: "{{ $labels.instance }}"
           summary: Host out of memory (instance {{ $labels.instance }})
@@ -65,7 +65,7 @@ groups:
         expr: rate(node_vmstat_pgmajfault[1m]) > 1000
         for: 15m
         labels:
-          severity: warning
+          severity: information
         annotations:
           host: "{{ $labels.instance }}"
           summary: Host memory under memory pressure (instance {{ $labels.instance }})
@@ -75,7 +75,7 @@ groups:
         expr: node_filesystem_files_free / node_filesystem_files * 100 < 10 and ON (instance, device, mountpoint) node_filesystem_readonly == 0
         for: 15m
         labels:
-          severity: warning
+          severity: information
         annotations:
           host: "{{ $labels.instance }}"
           summary: Host out of inodes (instance {{ $labels.instance }})
@@ -85,7 +85,7 @@ groups:
         expr: node_filesystem_files_free / node_filesystem_files * 100 < 10 and predict_linear(node_filesystem_files_free[1h], 24 * 3600) < 0 and ON (instance, device, mountpoint) node_filesystem_readonly == 0
         for: 2m
         labels:
-          severity: warning
+          severity: information
         annotations:
           host: "{{ $labels.instance }}"
           summary: Host inodes will fill in 24 hours (instance {{ $labels.instance }})
