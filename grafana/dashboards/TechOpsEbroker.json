@@ -601,7 +601,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 10,
+        "w": 5,
         "x": 7,
         "y": 3
       },
@@ -645,6 +645,88 @@
         }
       ],
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 12,
+        "y": 3
+      },
+      "id": 119,
+      "options": {
+        "displayMode": "lcd",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "avg_over_time(external_monitoring_oiosi_resp_time_ms[5m])",
+          "legendFormat": "{{instance}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*eu-central-1.*)",
+            "renamePattern": "OIOSI AWS-Frankfurt"
+          }
+        },
+        {
+          "id": "renameByRegex",
+          "options": {
+            "regex": "(.*eu-west-1.*)",
+            "renamePattern": "OIOSI AWS-Ireland"
+          }
+        }
+      ],
+      "type": "bargauge"
     },
     {
       "datasource": {
@@ -2429,6 +2511,6 @@
   "timezone": "",
   "title": "TechOps - Ebroker",
   "uid": "7xIp2GJnl",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
