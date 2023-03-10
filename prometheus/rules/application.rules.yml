@@ -929,7 +929,7 @@ groups:
           runbook: ""
 
       - alert: VLTExternalStatus
-        expr: count (vlt_monitoring_status{status="down"}) > 0
+        expr: count (external_monitoring_vlt_resp_time_ms{status="down"}) > 0
         for: 15m
         labels:
           severity: "critical"
@@ -940,7 +940,7 @@ groups:
           runbook: ""
 
       - alert: VLTExternalLatency
-        expr: vlt_monitoring_status{status="up"} > 5000
+        expr: external_monitoring_vlt_resp_time_ms{status="up"} > 5000
         for: 15m
         labels:
           severity: "critical"
@@ -948,4 +948,26 @@ groups:
           host: "{{ $labels.instance }}"
           summary: "{{ $value }} ms"
           description: "Login latency to VLT from AWS is high"
+          runbook: ""
+
+      - alert: OIOSIExternalStatus
+        expr: count (external_monitoring_oiosi_resp_time_ms{status="down"}) > 0
+        for: 15m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.name }}"
+          description: "Unable to fetch OIOSI WSDL from AWS"
+          runbook: ""
+
+      - alert: OIOSIExternalLatency
+        expr: external_monitoring_oiosi_resp_time_ms{status="up"} > 5000
+        for: 15m
+        labels:
+          severity: "critical"
+        annotations:
+          host: "{{ $labels.instance }}"
+          summary: "{{ $value }} ms"
+          description: "WSDL fetch from OIOSI via AWS is high"
           runbook: ""
