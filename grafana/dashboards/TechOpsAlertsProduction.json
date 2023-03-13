@@ -617,7 +617,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "avg_over_time(external_monitoring_vlt_resp_time_ms{instance=\"ec2-18-157-188-65.eu-central-1.compute.amazonaws.com:80\"}[15m])",
+          "expr": "avg_over_time(external_monitoring_vlt_resp_time_ms{instance=\"ec2-18-157-188-65.eu-central-1.compute.amazonaws.com:80\"}[1h])",
           "legendFormat": "{{name}}",
           "range": true,
           "refId": "A"
@@ -710,7 +710,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "avg_over_time(external_monitoring_vlt_resp_time_ms{instance=\"ec2-3-248-3-175.eu-west-1.compute.amazonaws.com:80\"}[15m])",
+          "expr": "avg_over_time(external_monitoring_vlt_resp_time_ms{instance=\"ec2-3-248-3-175.eu-west-1.compute.amazonaws.com:80\"}[1h])",
           "legendFormat": "{{name}}",
           "range": true,
           "refId": "A"
@@ -735,6 +735,6 @@
   "timezone": "",
   "title": "TechOps - Alerts",
   "uid": "mKHRW4T4k",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }
