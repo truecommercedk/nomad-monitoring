@@ -135,6 +135,20 @@ scrape_configs:
       - target_label: env
         replacement: production
 
+  - job_name: 'gen-dat-esw-test'
+    static_configs:
+      - targets: [ 'gen-dat-esw-001.tstest.lan:9114' ]
+    relabel_configs:
+      - target_label: env
+        replacement: test
+
+  - job_name: 'gen-dat-esw-demo'
+    static_configs:
+      - targets: [ 'gen-dat-esw-001.tsdemo.lan:9114' ]
+    relabel_configs:
+      - target_label: env
+        replacement: demo
+
   - job_name: 'vcenter'
     static_configs:
       - targets: [ 'vcenterexporter.service.dc1.consul:9272' ]

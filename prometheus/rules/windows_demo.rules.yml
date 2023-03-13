@@ -44,3 +44,14 @@ groups:
           host: "{{ $labels.instance }}"
           summary: "{{ $value }} Seconds offset"
           description: "NTP client time is more than 1sec offset \n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: WindowsServerServiceStopped
+        expr: sum by (group,instance,name,env) (windows_service_state{env="demo",state!="running", name!~"sppsvc|gupdate|remoteregistry|wbiosrvc|trustedinstaller|edgeupdate|shellhwdetection"} == 1) + on (group,instance,name,env) sum by (group,instance,name,env) (windows_service_start_mode{env="demo",start_mode="auto"} == 1)
+        for: 5m
+        labels:
+          severity: information
+        annotations:
+          group: "{{ $labels.group }}"
+          host: "{{ $labels.instance }}"
+          summary: "{{ $labels.name }}"
+          description: "Windows Service is not running\n LABELS = {{ $labels }}"
