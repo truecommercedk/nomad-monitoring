@@ -43,6 +43,7 @@ job "Alertmanager" {
           "--config.file=/local/alertmanager.conf",
           "--web.external-url=https://alertmanager.b2bi.dk",
           "--storage.path=/etc/alertmanager"
+          //"--log.level=debug"
         ]
         ports = ["http"]
       }
