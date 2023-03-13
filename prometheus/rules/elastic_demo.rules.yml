@@ -1,0 +1,24 @@
+groups:
+  - name: elastic.rules
+    rules:
+      - alert: Elastic shards critical threshold exceeded
+        expr: elasticsearch_cluster_health_active_shards{env="demo"} > 3000
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.cluster }}"
+          summary: "{{ $value }} # Shards"
+          description: ""
+          runbook: "TODO"
+
+      - alert: Elastic health status
+        expr: elasticsearch_cluster_health_status{env="demo",color="red"}==1 or (elasticsearch_cluster_health_status{env="demo",color="yellow"}==1)  > 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          host: "{{ $labels.cluster }}"
+          summary: "{{ $labels.color }} status"
+          description: ""
+          runbook: "TODO"

@@ -35,7 +35,7 @@ groups:
           runbook: "TODO"
 
       - alert: Elastic shards warning threshold exceeded - audit-cluster
-        expr: elasticsearch_cluster_health_active_shards{cluster="audit-cluster",env="production"} > 20000
+        expr: elasticsearch_cluster_health_active_shards{cluster="audit-cluster",env="production"} > 15000
         for: 15m
         labels:
           severity: "information"
@@ -46,7 +46,7 @@ groups:
           runbook: "TODO"
 
       - alert: Elastic health status
-        expr: elasticsearch_cluster_health_status{color="red"}==1 or (elasticsearch_cluster_health_status{color="yellow"}==1)  > 0
+        expr: elasticsearch_cluster_health_status{env="production",color="red"}==1 or (elasticsearch_cluster_health_status{env="production",color="yellow"}==1)  > 0
         for: 15m
         labels:
           severity: "information"

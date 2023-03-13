@@ -12,6 +12,28 @@ groups:
           summary: "Endpoint {{ $labels.instance }} down"
           description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minutes."
 
+      - alert: InstanceDownDemo
+        expr: up{env="demo"} == 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          group: "{{ $labels.group }}"
+          host: "{{ $labels.instance }}"
+          summary: "Endpoint {{ $labels.instance }} down"
+          description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minutes."
+
+      - alert: InstanceDownTest
+        expr: up{env="test"} == 0
+        for: 15m
+        labels:
+          severity: "information"
+        annotations:
+          group: "{{ $labels.group }}"
+          host: "{{ $labels.instance }}"
+          summary: "Endpoint {{ $labels.instance }} down"
+          description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minutes."
+
       - alert: DeadMansSwitch
         expr: vector(1)
         labels:
