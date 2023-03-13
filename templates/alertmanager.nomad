@@ -104,7 +104,7 @@ receivers:
 
 - name: information_alert
   email_configs:
-   - to: 'b2bi-techops@trucecommerce.com'
+   - to: 'thomas.elsgaard@trucecommerce.com'
 
 - name: devsupport_notify
   email_configs:
