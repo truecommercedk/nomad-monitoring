@@ -105,7 +105,7 @@ receivers:
 
 - name: information_alert
   email_configs:
-   - to: 'thomas.elsgaard@trucecommerce.com'
+   - to: 'thomas.elsgaard@truecommerce.com'
 
 - name: devsupport_notify
   email_configs:
