@@ -30,3 +30,13 @@ groups:
           host: "{{ $labels.host_name }}"
           summary: "{{ $labels.name }}"
           description: "Host status is not GREEN {{ $labels.instance }}: {{ $value }}\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+      - alert: VMWareESXiHostDown
+        expr: vmware_host_connection_state{state="notResponding"} == 1
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          host: "{{ $labels.host_name }}"
+          summary: "{{ $labels.state }}"
+          description: "Host status is down {{ $labels.host_name }}"
