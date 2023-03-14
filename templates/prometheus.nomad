@@ -359,7 +359,8 @@ EOTC
           "--storage.tsdb.path=/var/lib/prometheus/data",
           "--web.enable-admin-api",
           "--web.enable-lifecycle",
-          "--storage.tsdb.retention.size=50GB"
+          "--storage.tsdb.retention.size=50GB",
+          "--web.external-url=https://prometheus.b2bi.dk"
         ]
       }
 	  
